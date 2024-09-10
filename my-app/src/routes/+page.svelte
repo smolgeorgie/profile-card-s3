@@ -22,7 +22,7 @@
   <div class="card-container">
     <div class="card">
       <section class="creditcard-content">
-        <h1>Credit Card</h1>
+        <h1>Credit Card Details</h1>
       </section>
     </div>
   </div>
