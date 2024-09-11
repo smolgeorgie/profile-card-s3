@@ -11,17 +11,30 @@
       const y = e.clientY - cardRect.top;
       const centerX = cardRect.width / 2;
       const centerY = cardRect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 15;
-      const rotateY = ((centerX - x) / centerX) * 15;
+
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      const activeWidth = screenWidth * 0.9;
+      const activeHeight = screenHeight * 0.9;
+      const offsetX = (screenWidth - activeWidth) / 2;
+      const offsetY = (screenHeight - activeHeight) / 2;
+
+      let rotateX = 0;
+      let rotateY = 0;
+
+      if (
+        e.clientX > offsetX &&
+        e.clientX < offsetX + activeWidth &&
+        e.clientY > offsetY &&
+        e.clientY < offsetY + activeHeight
+      ) {
+        rotateX = ((y - centerY) / centerY) * 15;
+        rotateY = ((centerX - x) / centerX) * 15;
+      }
 
       card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
-
-      // Update text shadow for shining effect
-      const shadowX = (x - centerX) / 10;
-      const shadowY = (y - centerY) / 10;
-      creditCardContent.style.textShadow = `${shadowX}px ${shadowY}px 20px rgba(255, 255, 255, 0.8)`;
     });
   });
 </script>
@@ -68,7 +81,8 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transition:
       box-shadow 0.3s ease-in-out,
-      background 0.3s ease-in-out;
+      background 0.3s ease-in-out,
+      transform 0.1s ease-out;
     transform-style: preserve-3d;
     cursor: pointer;
     --mouse-x: 50%;
@@ -125,12 +139,7 @@
     font-family: "Fira Sans", sans-serif;
     position: relative;
     display: flex;
-    width: 100%;
-    height: 100%;
     color: black;
-    border-radius: 10px;
-    box-shadow: 0 0 px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    transition: text-shadow 0.3s ease-in-out;
   }
 </style>
