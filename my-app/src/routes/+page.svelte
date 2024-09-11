@@ -142,4 +142,10 @@
     color: black;
     z-index: 1;
   }
+
+  .creditcard-content h1,
+  .creditcard-content h2,
+  .creditcard-content p {
+    text-shadow: 2px 2px 5px rgba(245, 210, 255, 0.983); /* Added text shadow */
+  }
 </style>
