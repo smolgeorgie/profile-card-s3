@@ -1,4 +1,6 @@
 <script>
+  import MediaQuery from "./my-app/src/components/MediaQuery.svelte";
+
   import { onMount } from "svelte";
 
   onMount(() => {
@@ -38,6 +40,12 @@
     });
   });
 </script>
+
+<MediaQuery query="(max-width: 480px)" let:matches>
+  {#if matches}
+    <div class="root mobile">mobile</div>
+  {/if}
+</MediaQuery>
 
 <body>
   <div class="card-container">
