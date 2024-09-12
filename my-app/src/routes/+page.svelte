@@ -1,6 +1,5 @@
 <script>
-  import MediaQuery from "./my-app/src/components/MediaQuery.svelte";
-
+  import { breakpoint, platform } from "../mediaquery.svelte";
   import { onMount } from "svelte";
 
   onMount(() => {
@@ -41,11 +40,93 @@
   });
 </script>
 
-<MediaQuery query="(max-width: 480px)" let:matches>
-  {#if matches}
-    <div class="root mobile">mobile</div>
-  {/if}
-</MediaQuery>
+{#if $breakpoint == "xs"}
+  <style>
+    .card-container {
+      perspective: 1000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      position: relative;
+      width: 250px;
+      height: 150px;
+      background: rgba(136, 0, 255, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transition:
+        box-shadow 0.3s ease-in-out,
+        background 0.3s ease-in-out,
+        transform 0.1s ease-out;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.162) 50%,
+        rgba(255, 255, 255, 0.05) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 50px 50px;
+    }
+    .card:hover {
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.716) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgb(255, 255, 255) 50%,
+        rgba(255, 255, 255, 0) 75%,
+        transparent 75%,
+        transparent
+      );
+    }
+    .holographic-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        circle at var(--mouse-x) var(--mouse-y),
+        rgba(255, 255, 255, 0.5),
+        rgba(0, 0, 255, 0.2),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 255, 0.3)
+      );
+      background-size: 200% 200%;
+      transition:
+        background-position 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 0;
+    }
+    .card:hover .holographic-bg {
+      opacity: 1;
+    }
+    .creditcard-content {
+      font-family: "Fira Sans", sans-serif;
+      position: relative;
+      display: flex;
+      color: black;
+      z-index: 1;
+    }
+
+    .creditcard-content h1,
+    .creditcard-content h2,
+    .creditcard-content p {
+      text-shadow: 2px 2px 5px rgba(245, 210, 255, 0.983); /* Added text shadow */
+    }
+  </style>
+{/if}
 
 <body>
   <div class="card-container">
