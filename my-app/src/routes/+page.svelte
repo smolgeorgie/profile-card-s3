@@ -1,4 +1,5 @@
 <script>
+  import logo from "../assets/soapsleeve.jpg";
   import { onMount } from "svelte";
 
   onMount(() => {
@@ -39,24 +40,34 @@
 </script>
 
 <body>
-  <div class="card-container">
-    <div class="card">
+  <article class="card-container">
+    <article class="card">
       <div class="holographic-bg"></div>
       <section class="creditcard-content">
         <h1>Credit Card</h1>
-        <article class="Name-details">
-          <h2>Name Cardholder</h2>
-          <p>Ilona van Oosbree</p>
+        <article class="cardnumber">
+          <p>123 456 7890</p>
         </article>
+        <div class="details-spacearound">
+          <article class="name-details">
+            <h2>Cardholder</h2>
+            <p>Ilona van Oosbree</p>
+          </article>
+          <article class="expiration-date">
+            <h2>Expires</h2>
+            <p>06/25</p>
+          </article>
+        </div>
       </section>
-    </div>
-  </div>
+    </article>
+  </article>
 </body>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
+  @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
   body {
+    font-family: "Orbitron", sans-serif;
+    letter-spacing: 2px;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -71,7 +82,6 @@
     align-items: center;
   }
   .card {
-    position: relative;
     width: clamp(300px, 50vw, 850px);
     height: clamp(200px, 30vw, 500px);
     background: rgba(136, 0, 255, 0.3);
@@ -137,36 +147,52 @@
     opacity: 1;
   }
   .creditcard-content {
-    font-family: "Fira Sans", sans-serif;
-    position: relative;
+    height: clamp(200px, 30vw, 500px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    z-index: 1;
-    text-align: center;
-    padding: 1rem;
+    justify-content: space-between;
+    margin: 0 0 0 4rem;
   }
 
   .creditcard-content h1 {
-    font-size: clamp(1.5rem, 2.5vw, 3rem);
-    margin: 0.5rem 0;
+    z-index: 2;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: black;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
-  .creditcard-content h2 {
-    font-size: clamp(1.25rem, 2vw, 2.5rem);
-    margin: 0.5rem 0;
+  .creditcard-content .cardnumber {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    letter-spacing: 1rem;
+    color: black;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
-  .creditcard-content p {
-    font-size: clamp(1rem, 1.5vw, 2rem);
-    margin: 0.5rem 0;
+  .details-spacearound {
+    display: flex;
+    justify-content: space-between;
   }
 
-  .creditcard-content h1,
-  .creditcard-content h2,
-  .creditcard-content p {
-    text-shadow: 2px 2px 5px rgba(245, 210, 255, 0.983); /* Added text shadow */
+  .creditcard-content .name-details,
+  .creditcard-content .expiration-date {
+    z-index: 2;
+    color: black;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0 5rem 1rem 0;
+    & h2 {
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    & p {
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
   }
 </style>
